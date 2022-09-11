@@ -35,26 +35,22 @@ using namespace std;
 void solve(){
     int n, q;
     cin >> n >> q;
-    vector<vector<int>> contests(n, vector<int>(2));
-    int t, c;
-    string s;
+    vector<int> contests(n);
+    string s = "";
     for (int i = 0; i < n; i++) {
-        cin >> t;
-        contests[i] = {t, i};
+        cin >> contests[i];
         s += "0";
     } 
-    sort(contests.begin(), contests.end());
-    vector<int> idx = 
-    while (q > 0 && contests.size() > 0) {
-        c = contests[0][0];
-        contests.erase(contests.begin());
-        if (q > c) {
-            q--;
-
+    int b = 0;
+    for (int i = n-1; i >= 0; i--) {
+        if (contests[i] <= b) {
+            s[i] = '1';
+        } else if (contests[i] > b && b < q) {
+            s[i] = '1';
+            b++;
         }
-        t++;
     }
-    cout << t << endl;
+    cout << s << endl;
 }
 
 int main(){
